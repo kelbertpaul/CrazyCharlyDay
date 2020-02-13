@@ -1,5 +1,5 @@
 <?php
-namespace CrazyCharlyDay\modele;
+namespace crazy\modele;
 class Role extends \Illuminate\Database\Eloquent\Model{
 
     protected $table = 'role';

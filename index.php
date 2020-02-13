@@ -3,10 +3,10 @@
 session_start();
 require 'vendor/autoload.php';
 use crazy\controller\ControlleurConnexion;
-use crazy\controller\ControlleurCreneau;
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
+use crazy\controller\ControlleurCreneau;
 use Illuminate\Database\Capsule\Manager as DB;
 
 $file = parse_ini_file('src/conf/conf.ini');
@@ -26,5 +26,13 @@ $app->get('/ajoutCreneau', function(){
 $app->get('/bonjour', function(){
     echo 'bonjour';
 });
+
+$app->get('/comptes/afficher', function(){
+    \crazy\controller\ControllerAuthentification::connecterCompteSansAuth();
+})->name('afficher_les_comptes');
+
+$app->get('/comptes/connected/:id', function($id){
+    \crazy\controller\ControllerAuthentification::connecterComptePrecis($id);
+})->name('connexion_compte_sans_auth');
 
 $app->run();

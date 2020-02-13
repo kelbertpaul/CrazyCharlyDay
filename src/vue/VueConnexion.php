@@ -20,12 +20,17 @@ class VueConnexion {
      * @var Slim|null
      */
     private $app;
+    /**
+     * @var string
+     */
+    private $URLcomptes;
 
     public function __construct($sel) {
     $this->selector = $sel;
         $this->app = Slim::getInstance();
         $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
+        $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
     }
     public function formulaireCo() {
     $html = <<<END
@@ -84,6 +89,12 @@ class VueConnexion {
                             <div class="col-sm-10">
                               <input type="password" class="form-control" id="inputPassword" placeholder="Password">
                             </div>
+                          </div>
+                          <div class="form-group row">
+                            <button type="button" class="btn btn-primary">Se Connecter</button>
+                          </div>
+                          <div class="form-group row">
+                            <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
                           </div>
                         </form>
                       </div>
