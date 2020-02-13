@@ -4,11 +4,11 @@ namespace crazy\vue;
 
 use Slim\Slim;
 
-class VueCreneau
-{
-    private $html;
+class VueGestionRole {
 
-    public $selector;
+    private $selector;
+    private $html;
+    private $gestion_role;
     /**
      * @var string
      */
@@ -21,19 +21,17 @@ class VueCreneau
      * @var Slim|null
      */
     private $app;
+    private $home;
 
-    public function __construct($sel)
-    {
-        $this->selector = $sel;
+    public function __construct($sel,$liste) {
         $this->app = Slim::getInstance();
+        $this->home= $this->app->urlFor('afficher_le_menu');
+        $this->gestion_role = $liste;
+        $this->selector = $sel;
         $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
-    }
-
-    public function formulaireCreneau()
-    {
-        $html = <<<END
-            <html lang="fr">
+        $this->html = <<<END
+<html lang="fr">
                     <head>
                       <meta charset="utf-8">
                       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -50,14 +48,14 @@ class VueCreneau
                       <!-- Navigation -->
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">CoBoard</a>
+                          <a class="navbar-brand" href="$this->home">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
                           <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto">
                               <li class="nav-item active">
-                                <a class="nav-link" href="#">Home
+                                <a class="nav-link" href="$this->home">Home
                                   <span class="sr-only">(current)</span>
                                 </a>
                               </li>
@@ -75,34 +73,45 @@ class VueCreneau
                         </div>
                       </nav>
                       <!-- Page Content -->
-                      <div class="container">
-                        <form id="myForm" method="post" action="" >
-	<br>Jour *<br><select name="select1" id="select1" required >
-		<option value="valeur1" selected="selected">Première option</option>
-		<option value="valeur2" >Seconde option</option>
-	</select>
-	<br>Semaine *<br><select name="select2" id="select2" required >
-		<option value="valeur1" selected="selected">Première option</option>
-		<option value="valeur2" >Seconde option</option>
-	</select>
-	<br>Heure d&eacute;but *<br><input name="number3" id="number3" type="number" required >
-	<br>Heure fin<br><input name="number4" id="number4" type="number" >
-	<br><input name="submit5" type="submit" value="Valider" >
-</form>
-                      </div>
-                      <!-- Bootstrap core JavaScript -->
-                      <script src="$this->URLbootstrapJS"></script>
-            </body>
-        </html> 
+                      
+        <blockquote class="blockquote text-center">
+        <p class="mb-0">Liste de la gestion des rôles</p>
+      </blockquote>
 END;
-        $this->html = $html;
     }
 
-    public function render()
-    {
-        if ($this->selector == "nouveau") {
-            $this->formulaireCreneau();
-            echo $this->html;
+    public function listeGestionRole() {
+        $res = '<div class="card align-items-center" style="width: 20rem;">';
+        foreach ($this->gestion_role as $values) {
+            $image = "img/" . $values->IDuser . ".jpg"; 
+            $res = $res . <<<END
+            <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="$image" alt="Profil user">
+            <div class="card-body">
+            <ul class="list-group list-group-flush w-100 align-items-stretch">
+              <p class="card-text">IDrole : $values->IDrole</p>
+              <p class="card-text">IDuser : $values->IDuser</p>
+              <p class="card-text">Crenaux : $values->Crenaux h</p>
+            </ul>
+            </div>
+          </div>
+END;
         }
+        $this->html = $this->html .  $res . '</div>' ;
     }
+
+    public function render() {
+        if ($this->selector == "liste_gestion_role") {
+            $this->listeGestionRole();
+        }
+        $this->html = $this->html . <<<END
+        </div>
+        <!-- Bootstrap core JavaScript -->
+        <script src="$this->URLbootstrapJS"></script>
+</body>
+</html> 
+END;
+echo ($this->html);
+    }
+    
 }

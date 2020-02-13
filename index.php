@@ -4,6 +4,7 @@ session_start();
 
 use crazy\controller\ControlleurConnexion;
 use crazy\controller\ControlleurCreneau;
+use crazy\controller\ControlleurListe;
 
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
@@ -27,5 +28,9 @@ $app->get('/ajout', function(){
 $app->get('/bonjour', function(){
     echo 'bonjour';
 });
+
+$app->get('/gestion_role', function() {
+    ControlleurListe::liste_gestion_role();
+})->name('afficher_liste_gestion_role');
 
 $app->run();

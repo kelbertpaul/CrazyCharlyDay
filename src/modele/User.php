@@ -1,5 +1,5 @@
 <?php
-namespace CrazyCharlyDay\modele;
+namespace crazy\modele;
 class User extends \Illuminate\Datebase\Eloquent\Model {
     protected $table = 'user';
     protected $primaryKey = 'id';

@@ -35,7 +35,7 @@ class VueConnexion {
                       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                       <meta name="description" content="">
                       <meta name="author" content="">
-                      <title>Bare - Start Bootstrap Template</title>
+                      <title>CoBoard</title>
                       <!-- Bootstrap core CSS -->
                       <link rel="stylesheet" href="$this->URLbootstrapCSS">
                       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -46,7 +46,7 @@ class VueConnexion {
                       <!-- Navigation -->
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">Start Bootstrap</a>
+                          <a class="navbar-brand" href="#">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
