@@ -4,11 +4,7 @@ session_start();
 
 use crazy\controller\ControlleurConnexion;
 use crazy\controller\ControlleurCreneau;
-<<<<<<< HEAD
 use crazy\controller\ControlleurListe;
-=======
-
->>>>>>> eaeb3c889bc5ec3538b59f5573bf5e5d2be2e927
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
