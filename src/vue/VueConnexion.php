@@ -24,6 +24,10 @@ class VueConnexion {
      * @var string
      */
     private $URLcomptes;
+    /**
+     * @var string
+     */
+    private $URLcreneaux;
 
     public function __construct($sel) {
     $this->selector = $sel;
@@ -31,6 +35,7 @@ class VueConnexion {
         $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
         $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
+        $this->URLcreneaux = $this->app->urlFor('ajout');
     }
     public function formulaireCo() {
     $html = <<<END
@@ -95,6 +100,9 @@ class VueConnexion {
                           </div>
                           <div class="form-group row">
                             <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
+                          </div>
+                          <div class="form-group row">
+                            <a href = $this->URLcreneaux class="btn btn-primary">Ajouter un créneau</a>
                           </div>
                         </form>
                       </div>

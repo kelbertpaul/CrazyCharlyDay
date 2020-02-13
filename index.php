@@ -16,13 +16,17 @@ $db->addConnection($file);
 $db->setAsGlobal();
 $db->bootEloquent();
 
-app->get('/', function(){
+$app->get('/', function(){
     ControlleurConnexion::formulaireCo();
 })->name('afficher_le_menu');
 
 $app->get('/ajout', function(){
     ControlleurCreneau::nouveauCreneauForm();
 })->name('ajout');
+
+$app->post('/ajoutCreneauValidation', function(){
+    ControlleurCreneau::ajout();
+})->name('ajoutCreneauValidation');
 
 $app->get('/comptes/afficher', function(){
     \crazy\controller\ControllerAuthentification::connecterCompteSansAuth();
