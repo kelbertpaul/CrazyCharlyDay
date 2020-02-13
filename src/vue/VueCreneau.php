@@ -130,8 +130,9 @@ END;
             echo $this->html;
         } else if ($this->selector == "apAjout") {
             $this->formulaireCreneauApres();
+            echo $this->html;
+
         }
-        echo $this->html;
     }
 
     private function formulaireCreneauApresErreur()
