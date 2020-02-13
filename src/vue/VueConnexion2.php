@@ -12,6 +12,10 @@ class VueConnexion2{
     private $URLgestion;
     private $URLcreneaux;
     private $user;
+    /**
+     * @var string
+     */
+    private $URLconnexion;
 
     public function __construct($user) {
         $this->app = Slim::getInstance();
@@ -22,6 +26,7 @@ class VueConnexion2{
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
         $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
         $this->URLcreneaux = $this->app->urlFor('ajout');
+        $this->URLconnexion = $this->app->urlFor('se_connecter');
     }
 
     public function render($choix){
@@ -75,7 +80,7 @@ class VueConnexion2{
         $this->html = $res;
 
     }
-    public function reussirConnexion(){
+        public function reussirConnexion(){
         $user = $this->user;
         $res = "<p>Vous êtes connecté avec le compte : $user->name";
         $this->html = $res;

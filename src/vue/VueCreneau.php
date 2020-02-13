@@ -30,6 +30,18 @@ class VueCreneau
      * @var string
      */
     private $home;
+    /**
+     * @var string
+     */
+    private $URLcomptes;
+    /**
+     * @var string
+     */
+    private $URLcreneaux;
+    /**
+     * @var string
+     */
+    private $URLconnexion;
 
     public function __construct($sel, $list)
     {
@@ -39,6 +51,9 @@ class VueCreneau
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
         $this->redirectURL = $this->app->urlFor('ajoutCreneauValidation');
         $this->home = $this->app->urlFor("afficher_le_menu");
+        $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
+        $this->URLcreneaux = $this->app->urlFor('ajout');
+        $this->URLconnexion = $this->app->urlFor('se_connecter');
         $this->liste = $list;
     }
 
@@ -61,7 +76,7 @@ class VueCreneau
                     </head>
                     <body>
                       <!-- Navigation -->
-                      <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
+                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
                           <a class="navbar-brand" href="$this->home">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
@@ -70,18 +85,18 @@ class VueCreneau
                           <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto">
                               <li class="nav-item active">
-                                <a class="nav-link" href="#">Home
+                                <a class="nav-link" href="$this->home">Home
                                   <span class="sr-only">(current)</span>
                                 </a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="#">About</a>
+                                <a class="nav-link" href=$this->URLcomptes>Comptes</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="#">Services</a>
+                                <a class="nav-link" href=$this->URLcreneaux>Créneaux</a>
                               </li>
                               <li class="nav-item">
-                                <a class="nav-link" href="#">Contact</a>
+                                <a class="nav-link" href=$this->URLconnexion>Se connecter</a>
                               </li>
                             </ul>
                           </div>
