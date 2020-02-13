@@ -1,9 +1,10 @@
 <?php
 
 session_start();
-require 'vendor/autoload.php';
+
 use crazy\controller\ControlleurConnexion;
 use crazy\controller\ControlleurCreneau;
+
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
@@ -19,9 +20,9 @@ $app->get('/', function(){
     ControlleurConnexion::formulaireCo();
 })->name('afficher_le_menu');
 
-$app->get('/ajoutCreneau', function(){
+$app->get('/ajout', function(){
     ControlleurCreneau::nouveauCreneauForm();
-});
+})->name('ajout');
 
 $app->get('/bonjour', function(){
     echo 'bonjour';
