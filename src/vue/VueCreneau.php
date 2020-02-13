@@ -41,7 +41,7 @@ class VueCreneau
     /**
      * @var string
      */
-    private $URLconnexion;
+    private  $URLconnexion;
 
     public function __construct($sel, $list)
     {
