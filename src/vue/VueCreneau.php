@@ -52,6 +52,7 @@ class VueCreneau
                       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                       <meta name="description" content="">
                       <meta name="author" content="">
+                      <link rel="shortcut icon" type="image/x-icon" href="img/prof.jfif">
                       <title>CoBoard</title>
                       <!-- Bootstrap core CSS -->
                       <link rel="stylesheet" href="$this->URLbootstrapCSS">
