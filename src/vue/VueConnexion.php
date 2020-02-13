@@ -1,8 +1,10 @@
 <?php
 
-namespace CrazyCharlyDay\vue;
+namespace crazy\vue;
 
 class VueConnexion {
+    private $html;
+
     public $selector;
     public function __construct($sel) {
     $this->selector = $sel;
@@ -71,6 +73,7 @@ class VueConnexion {
                     </body>
                     </html>
     END;
+    $this->html = $html;
     }
 
     public function render() {

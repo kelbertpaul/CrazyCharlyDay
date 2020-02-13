@@ -1,7 +1,7 @@
 <?php
 
-namespace CrazyCharlyDay\controller;
-use CrazyCharlyDay\vue\VueConnexion;
+namespace crazy\controller;
+use crazy\vue\VueConnexion;
 class ControlleurConnexion {
 
     public static function formulaireCo() {

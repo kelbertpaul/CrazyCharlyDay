@@ -12,9 +12,9 @@ class ComposerStaticInit29f14e210c459eaff7c4e5f5bd9f6a0f
     );
 
     public static $prefixLengthsPsr4 = array (
-        'j' => 
+        'c' => 
         array (
-            'justjob\\' => 8,
+            'crazy\\' => 6,
         ),
         'S' => 
         array (
@@ -41,7 +41,7 @@ class ComposerStaticInit29f14e210c459eaff7c4e5f5bd9f6a0f
     );
 
     public static $prefixDirsPsr4 = array (
-        'justjob\\' => 
+        'crazy\\' => 
         array (
             0 => __DIR__ . '/../..' . '/src',
         ),

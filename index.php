@@ -2,7 +2,8 @@
 
 session_start();
 require 'vendor/autoload.php';
-use CrazyCharlyDay\controller\ControlleurConnexion;
+use crazy\controller\ControlleurConnexion;
+require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
 use Illuminate\Database\Capsule\Manager as DB;
