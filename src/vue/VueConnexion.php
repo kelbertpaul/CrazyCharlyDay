@@ -71,12 +71,12 @@ class VueConnexion {
                     </body>
                     </html>
     END;
-    echo $html;
     }
 
     public function render() {
         if ($this->selector == "CONNEXION") {
             $this->formulaireCo();
+            echo $this->html;
         }
     }
 }
