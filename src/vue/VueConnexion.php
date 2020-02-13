@@ -59,6 +59,9 @@ class VueConnexion {
                     </head>
                     <body>
                       <!-- Navigation -->
+                      <header class="masthead">
+                        <div class="container">
+                      </header>
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
                           <a class="navbar-brand" href="$this->home">CoBoard</a>
@@ -87,22 +90,7 @@ class VueConnexion {
                       </nav>
                       <!-- Page Content -->
                       <div class="container">
-                        <form>
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <button type="button" class="btn btn-primary">Se Connecter</button>
-                          </div>
+                        <form>  
                           <div class="form-group row">
                             <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
                           </div>
