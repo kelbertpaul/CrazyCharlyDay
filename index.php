@@ -3,6 +3,7 @@
 session_start();
 require 'vendor/autoload.php';
 use crazy\controller\ControlleurConnexion;
+use crazy\controller\ControlleurCreneau;
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
@@ -17,5 +18,13 @@ $db->bootEloquent();
 $app->get('/', function(){
     ControlleurConnexion::formulaireCo();
 })->name('afficher_le_menu');
+
+$app->get('/ajoutCreneau', function(){
+    ControlleurCreneau::nouveauCreneauForm();
+});
+
+$app->get('/bonjour', function(){
+    echo 'bonjour';
+});
 
 $app->run();
