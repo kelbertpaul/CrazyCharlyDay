@@ -3,6 +3,7 @@
 
 namespace crazy\controller;
 use crazy\modele\Creneau;
+use crazy\vue\VueAllCreneau;
 use crazy\vue\VueCreneau;
 
 class ControlleurCreneau
@@ -29,7 +30,9 @@ class ControlleurCreneau
             $creneau->heureD = $_POST['number3'];
             $creneau->heureF = $_POST['number4'];
             $creneau->save();
-            $vue = new VueCreneau('creneauAjoute');
+
+            $liste = Creneau::get();
+            $vue = new VueAllCreneau('creneauAjoute', $liste);
         }
 
         $vue->render();

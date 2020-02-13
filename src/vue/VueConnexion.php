@@ -31,6 +31,11 @@ class VueConnexion {
     * @var string
     */
    private $URLcreneaux;
+    private $URLConnexion;
+    /**
+     * @var string
+     */
+    private $URLconnexion;
 
     public function __construct($sel) {
       $this->app = Slim::getInstance();
@@ -41,7 +46,10 @@ class VueConnexion {
       $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
       $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
       $this->URLcreneaux = $this->app->urlFor('ajout');
-      $this->html = <<<END
+      $this->URLconnexion = $this->app->urlFor('se_connecter');
+    } 
+    public function formulaireCo() {
+    $html = <<<END
             <html lang="en">
                     <head>
                       <meta charset="utf-8">
@@ -103,6 +111,9 @@ class VueConnexion {
                         <div class="form-group row">
                             <a href = $this->URLcreneaux class="btn btn-primary">Ajouter un créneau</a>
                           </div>
+                         <div class="form-group row">
+                            <a href = $this->URLConnexion class="btn btn-primary">Se connecter</a>
+                            </div>
                         </form>
                       </div>
                          <div class="col">
@@ -118,9 +129,6 @@ class VueConnexion {
         </html> 
 END;
     } 
-    public function formulaireCo() {
-    }
-
     public function afficherPageCompte(){
       if (isset($_SESSION['user_connected'])){
           $res = "Vous êtes connecté sur le compte : " . $_SESSION['user_connected']['nom'];
