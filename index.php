@@ -40,5 +40,13 @@ $app->get('/gestion_role', function() {
     ControlleurListe::liste_gestion_role();
 })->name('afficher_liste_gestion_role');
 
+$app->get('/connexion',function(){
+    \crazy\controller\ControllerAuthentification::accederConnexion();
+})->name('se_connecter');
+
+$app->get('/connexion/validated', function(){
+    \crazy\controller\ControllerAuthentification::connecterCompteSecure();
+})->name('valider_connexion');
+
 
 $app->run();

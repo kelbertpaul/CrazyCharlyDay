@@ -31,6 +31,11 @@ class VueConnexion {
     * @var string
     */
    private $URLcreneaux;
+    private $URLConnexion;
+    /**
+     * @var string
+     */
+    private $URLconnexion;
 
     public function __construct($sel) {
       $this->app = Slim::getInstance();
@@ -41,6 +46,7 @@ class VueConnexion {
       $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
       $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
       $this->URLcreneaux = $this->app->urlFor('ajout');
+      $this->URLconnexion = $this->app->urlFor('se_connecter');
     } 
     public function formulaireCo() {
     $html = <<<END
@@ -100,6 +106,9 @@ class VueConnexion {
                         <div class="form-group row">
                             <a href = $this->URLcreneaux class="btn btn-primary">Ajouter un créneau</a>
                           </div>
+                         <div class="form-group row">
+                            <a href = $this->URLConnexion class="btn btn-primary">Se connecter</a>
+                            </div>
                         </form>
                       </div>
                       <!-- Bootstrap core JavaScript -->
