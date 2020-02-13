@@ -49,7 +49,7 @@ class VueConnexion {
       $this->URLconnexion = $this->app->urlFor('se_connecter');
     } 
     public function formulaireCo() {
-    $html = <<<END
+    $this->html = <<<END
             <html lang="en">
                     <head>
                       <meta charset="utf-8">
