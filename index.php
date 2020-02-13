@@ -1,4 +1,5 @@
 <?php
+
 session_start();
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
@@ -7,7 +8,7 @@ use Illuminate\Database\Capsule\Manager as DB;
 
 $file = parse_ini_file('src/conf/conf.ini');
 $db = new DB();
-$db->ddConnection($file);
+$db->addConnection($file);
 $db->setAsGlobal();
 $db->bootEloquent();
 
