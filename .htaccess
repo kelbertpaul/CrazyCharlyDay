@@ -4,7 +4,6 @@ RewriteEngine On
 # remplacer <login> et <projet> par les valeurs correpsondant à
 # votre cas - par exemple :
 # RewriteBase /www/username0/garage/
-#RewriteBase /www/kelbert2u/crazyCharlyDay/
 
 
 #
