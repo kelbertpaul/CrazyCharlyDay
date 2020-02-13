@@ -24,13 +24,17 @@ class VueConnexion {
      * @var string
      */
     private $URLcomptes;
+    private $home;
+    private $URLgestion;
 
     public function __construct($sel) {
-    $this->selector = $sel;
-        $this->app = Slim::getInstance();
-        $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
-        $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
-        $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
+      $this->app = Slim::getInstance();
+      $this->home= $this->app->urlFor('afficher_le_menu');
+      $this->URLgestion = $this->app->urlFor('afficher_liste_gestion_role');
+      $this->selector = $sel;
+      $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
+      $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
+      $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
     }
     public function formulaireCo() {
     $html = <<<END
@@ -51,14 +55,14 @@ class VueConnexion {
                       <!-- Navigation -->
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">CoBoard</a>
+                          <a class="navbar-brand" href="$this->home">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
                           <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto">
                               <li class="nav-item active">
-                                <a class="nav-link" href="#">Home
+                                <a class="nav-link" href="$this->home">Home
                                   <span class="sr-only">(current)</span>
                                 </a>
                               </li>
@@ -96,6 +100,9 @@ class VueConnexion {
                           <div class="form-group row">
                             <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
                           </div>
+                          <div class="form-group row">
+                            <a href = $this->URLgestion class="btn btn-primary">Voir la liste de gestion des rôles</a>
+                        </div>
                         </form>
                       </div>
                       <!-- Bootstrap core JavaScript -->
