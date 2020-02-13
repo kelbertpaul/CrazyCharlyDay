@@ -1,10 +1,10 @@
 <?php
 
 namespace CrazyCharlyDay\controller;
-
+use CrazyCharlyDay\vue\VueConnexion;
 class ControlleurConnexion {
 
-    public function formulaireCo() {
+    public static function formulaireCo() {
         $vue = new VueConnexion("CONNEXION");
         $vue->render();
     }
