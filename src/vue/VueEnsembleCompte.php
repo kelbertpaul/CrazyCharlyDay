@@ -28,7 +28,6 @@ class VueEnsembleCompte
         $this->item = $item;
         $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
-<<<<<<< HEAD
         $this->html = <<<END
         <html lang="fr">
         <head>
@@ -73,8 +72,6 @@ class VueEnsembleCompte
     </nav>
         <!-- Page Content -->
 END;
-=======
->>>>>>> a4c91bf602939073f24ebab63bc9f44487c91625
     }
 
     public function render()

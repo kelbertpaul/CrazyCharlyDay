@@ -3,6 +3,7 @@
 namespace crazy\controller;
 
 use crazy\vue\VueConnexion;
+use crazy\vue\VueConnexion2;
 use crazy\vue\VueEnsembleCompte;
 use crazy\modele\User;
 
