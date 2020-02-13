@@ -4,7 +4,7 @@ session_start();
 
 use crazy\controller\ControlleurConnexion;
 use crazy\controller\ControlleurCreneau;
-
+use crazy\controller\ControlleurListe;
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
@@ -39,6 +39,14 @@ $app->get('/comptes/connected/:id', function($id){
 $app->get('/gestion_role', function() {
     ControlleurListe::liste_gestion_role();
 })->name('afficher_liste_gestion_role');
+
+$app->get('/connexion',function(){
+    \crazy\controller\ControllerAuthentification::accederConnexion();
+})->name('se_connecter');
+
+$app->get('/connexion/validated', function(){
+    \crazy\controller\ControllerAuthentification::connecterCompteSecure();
+})->name('valider_connexion');
 
 
 $app->run();

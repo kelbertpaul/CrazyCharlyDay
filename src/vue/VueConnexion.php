@@ -24,19 +24,30 @@ class VueConnexion {
      * @var string
      */
     private $URLcomptes;
+
+    private $home;
+    private $URLgestion;
+       /**
+    * @var string
+    */
+   private $URLcreneaux;
+    private $URLConnexion;
     /**
      * @var string
      */
-    private $URLcreneaux;
+    private $URLconnexion;
 
     public function __construct($sel) {
-    $this->selector = $sel;
-        $this->app = Slim::getInstance();
-        $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
-        $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
-        $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
-        $this->URLcreneaux = $this->app->urlFor('ajout');
-    }
+      $this->app = Slim::getInstance();
+      $this->home= $this->app->urlFor('afficher_le_menu');
+      $this->URLgestion = $this->app->urlFor('afficher_liste_gestion_role');
+      $this->selector = $sel;
+      $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
+      $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
+      $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
+      $this->URLcreneaux = $this->app->urlFor('ajout');
+      $this->URLconnexion = $this->app->urlFor('se_connecter');
+    } 
     public function formulaireCo() {
     $html = <<<END
             <html lang="en">
@@ -54,16 +65,19 @@ class VueConnexion {
                     </head>
                     <body>
                       <!-- Navigation -->
+                      <header class="masthead">
+                        <div class="container">
+                      </header>
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">CoBoard</a>
+                          <a class="navbar-brand" href="$this->home">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
                           <div class="collapse navbar-collapse" id="navbarResponsive">
                             <ul class="navbar-nav ml-auto">
                               <li class="nav-item active">
-                                <a class="nav-link" href="#">Home
+                                <a class="nav-link" href="$this->home">Home
                                   <span class="sr-only">(current)</span>
                                 </a>
                               </li>
@@ -82,28 +96,19 @@ class VueConnexion {
                       </nav>
                       <!-- Page Content -->
                       <div class="container">
-                        <form>
-                          <div class="form-group row">
-                            <label for="staticEmail" class="col-sm-2 col-form-label">Email</label>
-                            <div class="col-sm-10">
-                              <input type="text" readonly class="form-control-plaintext" id="staticEmail" value="email@example.com">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <label for="inputPassword" class="col-sm-2 col-form-label">Password</label>
-                            <div class="col-sm-10">
-                              <input type="password" class="form-control" id="inputPassword" placeholder="Password">
-                            </div>
-                          </div>
-                          <div class="form-group row">
-                            <button type="button" class="btn btn-primary">Se Connecter</button>
-                          </div>
+                        <form>  
                           <div class="form-group row">
                             <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
                           </div>
                           <div class="form-group row">
+                            <a href = $this->URLgestion class="btn btn-primary">Voir la liste de gestion des rôles</a>
+                        </div>
+                        <div class="form-group row">
                             <a href = $this->URLcreneaux class="btn btn-primary">Ajouter un créneau</a>
                           </div>
+                         <div class="form-group row">
+                            <a href = $this->URLConnexion class="btn btn-primary">Se connecter</a>
+                            </div>
                         </form>
                       </div>
                       <!-- Bootstrap core JavaScript -->
