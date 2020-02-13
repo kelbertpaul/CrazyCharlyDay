@@ -111,9 +111,9 @@ class VueConnexion {
                         <div class="form-group row">
                             <a href = $this->URLcreneaux class="btn btn-primary">Ajouter un créneau</a>
                           </div>
-                         <div class="form-group row">
-                            <a href = $this->URLConnexion class="btn btn-primary">Se connecter</a>
-                            </div>
+                          <div class="form-group row">
+                            <a href = $this->URLconnexion class="btn btn-primary">Se connecter</a>
+                          </div>
                         </form>
                       </div>
                          <div class="col">

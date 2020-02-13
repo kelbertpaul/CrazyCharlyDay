@@ -2,11 +2,7 @@
 
 namespace crazy\controller;
 
-<<<<<<< HEAD
 use crazy\vue\VueConnexion;
-=======
-use crazy\vue\VueConnexion2;
->>>>>>> a4c91bf602939073f24ebab63bc9f44487c91625
 use crazy\vue\VueEnsembleCompte;
 use crazy\modele\User;
 
