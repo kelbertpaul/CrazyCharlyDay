@@ -59,7 +59,7 @@ class VueEnsembleCompte
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">About</a>
+                    <a class="nav-link" href="#">About us</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Services</a>
@@ -69,8 +69,8 @@ class VueEnsembleCompte
                 </li>
                 </ul>
             </div>
-            </div>
-        </nav>
+        </div>
+    </nav>
         <!-- Page Content -->
 END;
     }
@@ -83,9 +83,7 @@ END;
 
     private function afficherComptes()
     {
-        $res = ' <div class="row justify-content-center pt-5">
-        <h1>Liste des comptes disponibles</h1>
-      </div>' . '<div class="d-flex p-5 ml-5">';
+        $res = ' <h1 class="text-center text-success pt-5">Liste des comptes disponibles</h1>' . '<div class="d-flex p-5">';
         foreach ($this->item as $value) {
             $id = $value->id;
             $image = "../img/" . $id . ".jpg"; 

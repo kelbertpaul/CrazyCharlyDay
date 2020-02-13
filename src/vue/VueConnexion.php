@@ -41,9 +41,7 @@ class VueConnexion {
       $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
       $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
       $this->URLcreneaux = $this->app->urlFor('ajout');
-    } 
-    public function formulaireCo() {
-    $html = <<<END
+      $this->html = <<<END
             <html lang="en">
                     <head>
                       <meta charset="utf-8">
@@ -59,9 +57,7 @@ class VueConnexion {
                     </head>
                     <body>
                       <!-- Navigation -->
-                      <header class="masthead">
-                        <div class="container">
-                      </header>
+                      
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
                           <a class="navbar-brand" href="$this->home">CoBoard</a>
@@ -90,8 +86,15 @@ class VueConnexion {
                       </nav>
                       <!-- Page Content -->
                       <div class="container">
+                     <h1 class="text-white pt-5">Epicerie Générale Nancy</h1>
+                     <div class="progress">
+                      <div class="progress-bar" role="progressbar" style="width: 100%" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                     <h3 class="text-white pt-2">61 Rue St Nicolas, 54000 Nancy</h2>
+                       <div class="row">
+                         <div class="col">
                         <form>  
-                          <div class="form-group row">
+                          <div class="form-group row pt-5">
                             <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
                           </div>
                           <div class="form-group row">
@@ -102,18 +105,49 @@ class VueConnexion {
                           </div>
                         </form>
                       </div>
+                         <div class="col">
+                         <div class="spinner-border text-warning" role="status">
+                         <p class="text-white text-justify">Quoi que puisse dire Aristote, et toute la philosophie, il n’est rien d’égal au tabac, c’est la passion des honnêtes gens ; et qui vit sans tabac, n’est pas digne de vivre ; non seulement il réjouit, et purge les cerveaux humains, mais encore il instruit les âmes à la vertu, et l’on apprend avec lui à devenir honnête homme. Ne voyez-vous pas bien dès qu’on en prend, de quelle manière obligeante on en use avec tout le monde, et comme on est ravi d’en donner, à droit, et à gauche, partout où l’on se trouve ? On n’attend pas même qu’on en demande, et l’on court au-devant du souhait des gens : tant il est vrai, que le tabac inspire des sentiments d’honneur, et de vertu, à tous ceux qui en prennent. Mais c’est assez de cette matière, reprenons un peu notre discours. Si bien donc, cher Gusman, que Done Elvire ta maîtresse, surprise de notre départ, s’est mise en campagne après nous ; et son cœur, que mon maître a su toucher trop fortement, n’a pu vivre, dis-tu, sans le venir chercher ici ? Veux-tu qu’entre nous je te dise ma pensée ; J’ai peur qu’elle ne soit mal payée de son amour, que son voyage en cette ville produise peu de fruit, et que vous eussiez autant gagné à ne bouger de là.</p>
+                         <span class="sr-only">Loading...</span></div> 
+                         <img src="img/paniers-0.jpg" class="img-thumbnail" alt="Panier" height="500" width="500">
+                         </div>
+                      </div>
                       <!-- Bootstrap core JavaScript -->
                       <script src="$this->URLbootstrapJS"></script>
             </body>
         </html> 
 END;
-    $this->html = $html;
+    } 
+    public function formulaireCo() {
     }
+
+    public function afficherPageCompte(){
+      if (isset($_SESSION['user_connected'])){
+          $res = "Vous êtes connecté sur le compte : " . $_SESSION['user_connected']['nom'];
+          $res = $res . <<<END
+          <div class="alert alert-success" role="alert">
+          This is a success alert—check it out!
+          </div>
+END; $this->app->redirect($this->app->urlFor('afficher_le_menu'));
+      }else{
+          $res = "Vous n'avez pas réussi à vous connecter";
+          $res = $res . <<<END
+          <div class="alert alert-danger" role="alert">
+          This is a danger alert—check it out!
+          </div>
+END; $this->app->redirect($this->app->urlFor('afficher_les_comptes'));
+      }
+      $this->html =  $this->html . $res;
+  }
 
     public function render() {
         if ($this->selector == "CONNEXION") {
             $this->formulaireCo();
-            echo $this->html;
+            echo ($this->html);
+        }
+        if ($this->selector == "HORS-LIGNE") {
+          $this->afficherPageCompte();
+          echo ($this->html);
         }
     }
 }

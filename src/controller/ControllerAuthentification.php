@@ -1,6 +1,7 @@
 <?php
 namespace crazy\controller;
 
+use crazy\vue\VueConnexion;
 use crazy\vue\VueEnsembleCompte;
 use crazy\modele\User;
 
@@ -19,7 +20,7 @@ class ControllerAuthentification {
             'nom' => $user->nom,
             'role_id' => 1,
         );
-        $vueUtilisateur = new VueCompte();
+        $vueUtilisateur = new VueConnexion("HORS-LIGNE");
         $vueUtilisateur->render();
     }
 }
