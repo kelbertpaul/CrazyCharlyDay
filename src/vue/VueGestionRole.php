@@ -81,20 +81,21 @@ END;
     }
 
     public function listeGestionRole() {
-        $res = '<div class="d-flex p-5 ml-5">';
+        $res = '<div class="d-flex p-5">';
         foreach ($this->gestion_role as $values) {
             $image = "img/" . $values->IDuser . ".jpg"; 
             $res = $res . <<<END
-            <div class="card" style="width: 18rem;">
+            <div class="card mr-5 ml-5" style="width: 18rem;">
             <span class="border border-danger">
             <img class="card-img-top" src="$image" alt="Profil user">
             </span>
             <span class="border border-info">
             <div class="card-body">
             <ul class="list-group list-group-flush w-100 align-items-stretch">
-              <p class="card-text">IDrole : $values->IDrole</p>
-              <p class="card-text">IDuser : $values->IDuser</p>
-              <p class="card-text">Crenaux : $values->Crenaux h</p>
+              <p class="card-text text-primary">IDrole : $values->IDrole</p>
+              <p class="card-text text-success">IDuser : $values->IDuser</p>
+              <p class="card-text text-danger">Cycle : $values->cycle</p>
+              <p class="card-text text-warning">Crenaux : $values->Crenaux h</p>
               </ul>
               </div>
               </span>
