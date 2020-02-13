@@ -25,18 +25,26 @@ class VueCreneau
      * @var string
      */
     private $redirectURL;
+    private $liste;
+    /**
+     * @var string
+     */
+    private $home;
 
-    public function __construct($sel)
+    public function __construct($sel, $list)
     {
         $this->selector = $sel;
         $this->app = Slim::getInstance();
         $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
         $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
         $this->redirectURL = $this->app->urlFor('ajoutCreneauValidation');
+        $this->home = $this->app->urlFor("afficher_le_menu");
+        $this->liste = $list;
     }
 
     public function formulaireCreneau()
     {
+        $afficherCreneaux = $this->afficherCreneaux();
         $html = <<<END
             <html lang="fr">
                     <head>
@@ -55,7 +63,7 @@ class VueCreneau
                       <!-- Navigation -->
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">CoBoard</a>
+                          <a class="navbar-brand" href="$this->home">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
@@ -102,6 +110,7 @@ class VueCreneau
 	<br>Heure fin<br><input name="number4" id="number4" type="number" >
 	<br><input class="btn btn-primary" name="submit5" type="submit" value="Valider" >
 </form>
+$afficherCreneaux
                       </div>
                       <!-- Bootstrap core JavaScript -->
                       <script src="$this->URLbootstrapJS"></script>
@@ -119,10 +128,10 @@ END;
         } else if ($this->selector == "erreurDate") {
             $this->formulaireCreneauApresErreur();
             echo $this->html;
-        } else if ($this->selector == "creneauAjoute") {
-            $this->formulaireCreneauOKCBon();
-            echo $this->html;
+        } else if ($this->selector == "apAjout") {
+            $this->formulaireCreneauApres();
         }
+        echo $this->html;
     }
 
     private function formulaireCreneauApresErreur()
@@ -145,7 +154,7 @@ END;
                       <!-- Navigation -->
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">Start Bootstrap</a>
+                          <a class="navbar-brand" href="$this->home">Start Bootstrap</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
@@ -204,8 +213,30 @@ END;
         $this->html = $html;
     }
 
-    private function formulaireCreneauOKCBon()
+
+
+    private function afficherCreneaux()
     {
+        $ancre = '2020-01-20';
+
+        $res = "";
+        foreach($this->liste as $value){
+            $res = $res . "<div class=\"card\">
+  <div class=\"card-body\">
+    jour = $value->jour<br>
+    semaine = $value->semaine<br>
+    heure de début = $value->heureD<br>
+    heure de fin = $value->heureF
+  </div>
+</div><br>";
+
+        }
+        return $res;
+    }
+
+    public function formulaireCreneauApres()
+    {
+        $afficherCreneaux = $this->afficherCreneaux();
         $html = <<<END
             <html lang="fr">
                     <head>
@@ -213,7 +244,7 @@ END;
                       <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
                       <meta name="description" content="">
                       <meta name="author" content="">
-                      <title>Bare - Start Bootstrap Template</title>
+                      <title>CoBoard</title>
                       <!-- Bootstrap core CSS -->
                       <link rel="stylesheet" href="$this->URLbootstrapCSS">
                       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
@@ -224,7 +255,7 @@ END;
                       <!-- Navigation -->
                       <nav class="navbar navbar-expand-lg navbar-dark bg-dark static-top">
                         <div class="container">
-                          <a class="navbar-brand" href="#">Start Bootstrap</a>
+                          <a class="navbar-brand" href="$this->home">CoBoard</a>
                           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
                             <span class="navbar-toggler-icon"></span>
                           </button>
@@ -248,12 +279,17 @@ END;
                           </div>
                         </div>
                       </nav>
-                      
-                      <div class="alert alert-success" role="alert">
+                      <!-- Page Content -->
+                                            <div class="alert alert-success" role="alert">
   Votre créneau a été enregistré !
 </div>
-                      </body></html>   
-                      
+                      <div class="container">
+                            $afficherCreneaux
+                      </div>
+                      <!-- Bootstrap core JavaScript -->
+                      <script src="$this->URLbootstrapJS"></script>
+            </body>
+        </html> 
 END;
         $this->html = $html;
     }

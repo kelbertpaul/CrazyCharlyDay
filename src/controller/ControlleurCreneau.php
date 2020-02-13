@@ -3,14 +3,14 @@
 
 namespace crazy\controller;
 use crazy\modele\Creneau;
-use crazy\vue\VueAllCreneau;
 use crazy\vue\VueCreneau;
 
 class ControlleurCreneau
 {
 
     public static function nouveauCreneauForm(){
-        $vue = new VueCreneau("nouveau");
+        $liste = Creneau::get();
+        $vue = new VueCreneau("nouveau", $liste);
         $vue->render();
     }
 
@@ -22,7 +22,8 @@ class ControlleurCreneau
         if(($_POST['number3']>= $_POST['number4']) ||
             $_POST['number3']>= 23 || $_POST['number3']<=0 ||
             $_POST['number4']>= 23 || $_POST['number4']<=0){
-            $vue = new VueCreneau("erreurDate");
+            $liste = Creneau::get();
+            $vue = new VueCreneau("erreurDate", $liste);
         } else {
 
             $creneau->jour = $_POST['select1'];
@@ -32,7 +33,7 @@ class ControlleurCreneau
             $creneau->save();
 
             $liste = Creneau::get();
-            $vue = new VueAllCreneau('creneauAjoute', $liste);
+            $vue = new VueCreneau('apAjout', $liste);
         }
 
         $vue->render();

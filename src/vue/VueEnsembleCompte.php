@@ -21,6 +21,10 @@ class VueEnsembleCompte
     private $URLbootstrapCSS;
     private $html;
     private $item;
+    /**
+     * @var string
+     */
+    private $home;
 
     public function __construct($item)
     {
