@@ -1,10 +1,14 @@
 <?php
 
 session_start();
-require 'vendor/autoload.php';
+
 use crazy\controller\ControlleurConnexion;
 use crazy\controller\ControlleurCreneau;
+<<<<<<< HEAD
 use crazy\controller\ControlleurListe;
+=======
+
+>>>>>>> eaeb3c889bc5ec3538b59f5573bf5e5d2be2e927
 require 'vendor/autoload.php';
 $app = new \Slim\Slim();
 
@@ -24,9 +28,9 @@ $app->get('/ajout', function(){
     ControlleurCreneau::nouveauCreneauForm();
 })->name('ajout');
 
-$app->get('/bonjour', function(){
-    echo 'bonjour';
-});
+$app->post('/ajoutCreneauValidation', function(){
+    ControlleurCreneau::ajout();
+})->name('ajoutCreneauValidation');
 
 $app->get('/comptes/afficher', function(){
     \crazy\controller\ControllerAuthentification::connecterCompteSansAuth();
@@ -39,5 +43,6 @@ $app->get('/comptes/connected/:id', function($id){
 $app->get('/gestion_role', function() {
     ControlleurListe::liste_gestion_role();
 })->name('afficher_liste_gestion_role');
+
 
 $app->run();

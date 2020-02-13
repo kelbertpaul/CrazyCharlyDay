@@ -24,6 +24,7 @@ class VueConnexion {
      * @var string
      */
     private $URLcomptes;
+<<<<<<< HEAD
     private $home;
     private $URLgestion;
 
@@ -35,6 +36,20 @@ class VueConnexion {
       $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
       $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
       $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
+=======
+    /**
+     * @var string
+     */
+    private $URLcreneaux;
+
+    public function __construct($sel) {
+    $this->selector = $sel;
+        $this->app = Slim::getInstance();
+        $this->URLbootstrapCSS = $this->app->request->getRootUri() . '/public/css/bootstrap.css';
+        $this->URLbootstrapJS = $this->app->request->getRootUri() . '/public/js/boostrap.min.js';
+        $this->URLcomptes = $this->app->urlFor('afficher_les_comptes');
+        $this->URLcreneaux = $this->app->urlFor('ajout');
+>>>>>>> eaeb3c889bc5ec3538b59f5573bf5e5d2be2e927
     }
     public function formulaireCo() {
     $html = <<<END
@@ -101,8 +116,13 @@ class VueConnexion {
                             <a href = $this->URLcomptes class="btn btn-primary">Voir les comptes</a>
                           </div>
                           <div class="form-group row">
+<<<<<<< HEAD
                             <a href = $this->URLgestion class="btn btn-primary">Voir la liste de gestion des rôles</a>
                         </div>
+=======
+                            <a href = $this->URLcreneaux class="btn btn-primary">Ajouter un créneau</a>
+                          </div>
+>>>>>>> eaeb3c889bc5ec3538b59f5573bf5e5d2be2e927
                         </form>
                       </div>
                       <!-- Bootstrap core JavaScript -->
